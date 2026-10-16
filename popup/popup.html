@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PinLens</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header class="top">
+      <div class="brand">
+        <img src="../icons/icon-32.png" alt="" width="20" height="20" />
+        <span>PinLens</span>
+      </div>
+      <nav class="tabs" role="tablist">
+        <button class="tab active" data-view="pins" role="tab">Pins</button>
+        <button class="tab" data-view="settings" role="tab">Settings</button>
+      </nav>
+      <label class="switch" title="Turn PinLens on or off">
+        <input type="checkbox" id="enabled" />
+        <span></span>
+      </label>
+    </header>
+
+    <section id="view-pins" class="view">
+      <div class="controls">
+        <input type="search" id="search" placeholder="Search title, pinner, board, domain…" />
+        <div class="row">
+          <select id="scope" title="Which pins to show">
+            <option value="page">This page</option>
+            <option value="all">All collected</option>
+          </select>
+          <select id="filter" title="Filter by type">
+            <option value="all">All types</option>
+            <option value="image">Images</option>
+            <option value="video">Videos</option>
+            <option value="carousel">Carousels</option>
+            <option value="idea">Idea pins</option>
+            <option value="promoted">Promoted (ads)</option>
+            <option value="ai">AI generated</option>
+            <option value="organic">No ads / AI</option>
+          </select>
+          <select id="sort" title="Sort by">
+            <option value="saves">Most saves</option>
+            <option value="repins">Most repins</option>
+            <option value="reactions">Most reactions</option>
+            <option value="comments">Most comments</option>
+            <option value="newest">Newest</option>
+            <option value="oldest">Oldest</option>
+            <option value="seen">Recently seen</option>
+            <option value="followers">Pinner followers</option>
+          </select>
+        </div>
+      </div>
+      <p id="summary" class="summary"></p>
+      <ul id="list" class="list"></ul>
+      <button id="more" class="more" hidden>Show more</button>
+      <footer class="actions">
+        <button id="export">Export CSV</button>
+        <button id="download-all" title="Download media for every pin in the list (max 50)">Download list</button>
+      </footer>
+    </section>
+
+    <section id="view-settings" class="view" hidden>
+      <form id="settings" class="settings">
+        <label class="check">
+          <input type="checkbox" name="showBadges" />
+          <span>
+            <b>Stats badge on pins</b>
+            <small>Saves, repins, reactions, age and a download button on every pin.</small>
+          </span>
+        </label>
+        <label class="field">
+          <b>Promoted pins (ads)</b>
+          <select name="adsMode">
+            <option value="show">Show</option>
+            <option value="dim">Dim</option>
+            <option value="hide">Hide</option>
+          </select>
+        </label>
+        <label class="field">
+          <b>AI-generated pins</b>
+          <select name="aiMode">
+            <option value="show">Show</option>
+            <option value="dim">Dim</option>
+            <option value="hide">Hide</option>
+          </select>
+        </label>
+        <label class="field">
+          <b>Keep collected pins for (days)</b>
+          <input type="number" name="retentionDays" min="1" max="365" />
+        </label>
+      </form>
+      <div class="danger">
+        <p id="stored"></p>
+        <button id="clear">Delete all collected pins</button>
+      </div>
+      <p class="note">
+        PinLens reads the data Pinterest already loads in your tab. Nothing is sent anywhere else;
+        pins are stored only in this browser.
+      </p>
+    </section>
+
+    <script src="../src/settings.js"></script>
+    <script src="../src/format.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>

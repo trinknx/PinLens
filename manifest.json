@@ -1,0 +1,95 @@
+{
+  "manifest_version": 3,
+  "name": "PinLens — Pinterest pin stats, sort & download",
+  "short_name": "PinLens",
+  "description": "See saves, repins and age on every Pinterest pin, sort and filter what you've browsed, hide ads and AI pins, and download images and videos.",
+  "version": "1.0.0",
+  "minimum_chrome_version": "111",
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "action": {
+    "default_title": "PinLens",
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png"
+    }
+  },
+  "background": {
+    "service_worker": "src/background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.pinterest.com/*",
+        "*://*.pinterest.at/*",
+        "*://*.pinterest.ca/*",
+        "*://*.pinterest.ch/*",
+        "*://*.pinterest.cl/*",
+        "*://*.pinterest.co.in/*",
+        "*://*.pinterest.co.kr/*",
+        "*://*.pinterest.co.nz/*",
+        "*://*.pinterest.co.uk/*",
+        "*://*.pinterest.com.au/*",
+        "*://*.pinterest.com.mx/*",
+        "*://*.pinterest.cz/*",
+        "*://*.pinterest.de/*",
+        "*://*.pinterest.dk/*",
+        "*://*.pinterest.es/*",
+        "*://*.pinterest.fi/*",
+        "*://*.pinterest.fr/*",
+        "*://*.pinterest.ie/*",
+        "*://*.pinterest.it/*",
+        "*://*.pinterest.jp/*",
+        "*://*.pinterest.nl/*",
+        "*://*.pinterest.nz/*",
+        "*://*.pinterest.ph/*",
+        "*://*.pinterest.pt/*",
+        "*://*.pinterest.ru/*",
+        "*://*.pinterest.se/*"
+      ],
+      "js": ["src/page-hook.js"],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": [
+        "*://*.pinterest.com/*",
+        "*://*.pinterest.at/*",
+        "*://*.pinterest.ca/*",
+        "*://*.pinterest.ch/*",
+        "*://*.pinterest.cl/*",
+        "*://*.pinterest.co.in/*",
+        "*://*.pinterest.co.kr/*",
+        "*://*.pinterest.co.nz/*",
+        "*://*.pinterest.co.uk/*",
+        "*://*.pinterest.com.au/*",
+        "*://*.pinterest.com.mx/*",
+        "*://*.pinterest.cz/*",
+        "*://*.pinterest.de/*",
+        "*://*.pinterest.dk/*",
+        "*://*.pinterest.es/*",
+        "*://*.pinterest.fi/*",
+        "*://*.pinterest.fr/*",
+        "*://*.pinterest.ie/*",
+        "*://*.pinterest.it/*",
+        "*://*.pinterest.jp/*",
+        "*://*.pinterest.nl/*",
+        "*://*.pinterest.nz/*",
+        "*://*.pinterest.ph/*",
+        "*://*.pinterest.pt/*",
+        "*://*.pinterest.ru/*",
+        "*://*.pinterest.se/*"
+      ],
+      "js": ["src/settings.js", "src/format.js", "src/content.js"],
+      "css": ["src/content.css"],
+      "run_at": "document_start"
+    }
+  ],
+  "permissions": ["storage", "unlimitedStorage", "downloads"]
+}
